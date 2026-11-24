@@ -257,7 +257,7 @@ document.getElementById("ano").textContent = new Date().getFullYear();
 var form = document.getElementById("orc"), send = document.getElementById("send"), st = document.getElementById("st");
 function montarLink() {
   var f = form;
-  var msg = "Prezados, meu nome é " + f.nome.value.trim() + ". Gostaria de solicitar um orçamento. Equipamento: " + f.equip.value + ". Serviço desejado: " + f.serv.value + "." + (f.desc.value.trim() ? " Descrição: " + f.desc.value.trim() : "");
+  var msg = "Olá, meu nome é " + f.nome.value.trim() + ". Gostaria de solicitar um orçamento. Equipamento: " + f.equip.value + ". Serviço desejado: " + f.serv.value + "." + (f.desc.value.trim() ? " Descrição: " + f.desc.value.trim() : "");
   return "https://wa.me/" + NUMERO + "?text=" + encodeURIComponent(msg);
 }
 send.addEventListener("click", function (e) {

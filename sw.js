@@ -1,4 +1,4 @@
-var V="lsa-os-v7",CORE=["./","index.html","manifest.webmanifest","icon-192.png","icon-512.png"],
+var V="lsa-os-v8",CORE=["./","index.html","manifest.webmanifest","icon-192.png","icon-512.png"],
 CDN=["https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js","https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"];
 self.addEventListener("install",function(e){e.waitUntil(caches.open(V).then(function(c){return Promise.all([c.addAll(CORE)].concat(CDN.map(function(u){return fetch(u,{mode:"no-cors"}).then(function(r){return c.put(u,r)}).catch(function(){})})))}).then(function(){return self.skipWaiting()}))});
 self.addEventListener("activate",function(e){e.waitUntil(caches.keys().then(function(k){return Promise.all(k.filter(function(x){return x!==V}).map(function(x){return caches.delete(x)}))}).then(function(){return clients.claim()}))});

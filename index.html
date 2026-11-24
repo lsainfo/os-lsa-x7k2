@@ -234,9 +234,9 @@ function pq(){$("pq").innerHTML=ord(P).map(function(i){var s=P[i];return'<div cl
 $("pd").addEventListener("input",function(e){var d=e.target.dataset;if(d.pn!==undefined)P[+d.pn][0]=e.target.value;if(d.pt!==undefined)P[+d.pt][1]=e.target.value;if(d.pn!==undefined||d.pt!==undefined){SV("lsa_p",P);pts()}});
 $("pd").addEventListener("click",function(e){var d=e.target.dataset;if(d.px!==undefined)P.splice(+d.px,1);else if(e.target.id==="ap")P.push(["Novo ponto","Descrição do ponto."]);else return;SV("lsa_p",P);pq();pts()});
 /* DESCONTOS E TAXAS: valores padrão em um único lugar (também editáveis em "Preços e peças") */
-var CF_PADRAO={d:[{n:"Primeiro atendimento",p:4,x:0},{n:"Data comemorativa",p:7,x:0},{n:"Pix",p:2,x:1}],cap:10,max:3,m:[1.0524,1.1224,1.1401,1.1579,1.176,1.1943,1.2128,1.2316,1.2506,1.2696,1.2891,1.3087,1.3622,1.3821,1.4037,1.4267,1.4515,1.4781]};
+var CF_PADRAO={d:[{n:"Primeiro atendimento",p:4,x:0},{n:"Data comemorativa",p:7,x:0},{n:"Pix",p:2,x:1}],cap:30,max:3,m:[1.0524,1.1224,1.1401,1.1579,1.176,1.1943,1.2128,1.2316,1.2506,1.2696,1.2891,1.3087,1.3622,1.3821,1.4037,1.4267,1.4515,1.4781]};
 var CF=LS("lsa_dsc",null)||JSON.parse(JSON.stringify(CF_PADRAO));
-if(CF.v!==2){CF_PADRAO.m.forEach(function(v,i){if(!CF.m[i])CF.m[i]=v});CF.v=2;SV("lsa_dsc",CF)}
+if(CF.v!==3){CF_PADRAO.m.forEach(function(v,i){if(!CF.m[i])CF.m[i]=v});if(CF.cap===10)CF.cap=30;CF.v=3;SV("lsa_dsc",CF)}
 function ckNames(){var a=[];document.querySelectorAll("#dcl input").forEach(function(c){if(c.checked)a.push(c.dataset.dn)});return a}
 function dcr(w){var on=w||ckNames();$("dcl").innerHTML=CF.d.map(function(d){return'<label class="ck"><input type="checkbox" data-dn="'+esc(d.n)+'"'+(on.indexOf(d.n)>=0?" checked":"")+'> '+esc(d.n)+' ('+d.p+'%)'+(d.x?' <span class="mut">só no Pix/dinheiro</span>':'')+'</label>'}).join("")}
 function setDesc(x){var nm=x.ds||[];if(!x.ds&&+x.dc>0){var f=CF.d.filter(function(d){return d.p===+x.dc})[0];if(f)nm=[f.n]}
